@@ -1,6 +1,7 @@
 
 from simulate import ureg
 from organ_systems import cardiac_system
+from organ_systems import lower_gastrointestinal_system
 
 class Agent(object):
 
@@ -11,4 +12,11 @@ class Agent(object):
 
         # define systems 
         self.cardiacSystem = cardiac_system.CardiacSystem()
-        self.cardiacSystem.agent = self 
+        self.cardiacSystem.agent = self
+
+
+        self.lowerGastroIntestinalSystem = 
+                lower_gastrointestinal_system.LowerGastroIntestinalSystem()
+        self.lowerGastroIntestinalSystem._agent = self
+
+
