@@ -1,4 +1,4 @@
-import organ_abstract_classes as oac 
+import agents.organ_systems.organ_abstract_classes as oac 
 from simulate import ureg
 
 
@@ -14,9 +14,9 @@ class LargeIntestine(oac.Organ):
 
     def __init__(self, name):
         self._name = name
-        self.setBelongsRelations(_organSystem, _agent,
-                                _proximalOrgan, _distalOrgan)
-        self.setBiologicalData(_lesionList)
+        #self.setBelongsRelations(_organSystem, _agent,
+        #                        _proximalOrgan, _distalOrgan)
+        #self.setBiologicalData(_lesionList)
 
     def setBelongsRelations(self, organSystem, agent,
                             proximalOrgan, distalOrgan):
@@ -38,7 +38,8 @@ class LowerGastroIntestinalSystem(oac.OrganSystem):
     _agent = 'agent'
 
     def __init__(self, name):
-        self.setBelongsRelations(name, _agent) 
+        self._name = name 
+        #self.setBelongsRelations(self, name, _agent) 
         self.setBiologicalData()
 
     def setBelongsRelations(self, name, agent):
@@ -53,17 +54,17 @@ class LowerGastroIntestinalSystem(oac.OrganSystem):
         self.sigmoidColon = LargeIntestine('Sigmoid Colon')
         self.rectum = LargeIntestine('Rectum')
 
-        self.ascendingColon.setBelongsRelations(self, _agent,
+        self.ascendingColon.setBelongsRelations(self, self._agent,
                             [], [self.appendix, self.transverseColon])
-        self.appendix.setBelongsRelations(self, _agent,
+        self.appendix.setBelongsRelations(self, sel_agent,
                             [self.ascendingColon], [])
-        self.transverseColon.setBelongsRelations(self, _agent,
+        self.transverseColon.setBelongsRelations(self, self._agent,
                             [self.ascendingColon], [self.descendingColon])
-        self.descendingColon.setBelongsRelations(self, _agent,
+        self.descendingColon.setBelongsRelations(self, self._agent,
                             [self.transverseColon], [self.sigmoidColon])
-        self.sigmoidColon.setBelongsRelations(self, _agent,
+        self.sigmoidColon.setBelongsRelations(self, self._agent,
                             [self.descendingColon], [self.rectum])
-        self.rectum.setBelongsRelations(self, _agent,
+        self.rectum.setBelongsRelations(self, self._agent,
                             [self.sigmoidColon], [])
         
 
